@@ -23,7 +23,9 @@ export const HomePage = () => {
         <>
             <Navigation></Navigation>
             <div className={styles.homePageWrapper}>
-                {chatRooms.map(chatRoom => <Link key={chatRoom.id} to={`/chatroom/${chatRoom.id}`}>{chatRoom.name}</Link>)}
+                <div className={styles.chatRooms}>
+                    {chatRooms.map(chatRoom => <Link key={chatRoom.id} to={`/chatroom/${chatRoom.id}`}>{chatRoom.name}</Link>)}
+                </div>
             </div>
         </>
     )

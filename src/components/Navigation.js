@@ -53,7 +53,10 @@ export const Navigation = () => {
                 {authUser ?
                     <div className={styles.headerSubclass}>
                         <div className={styles.createChatRoom}>
-                            <button onClick={toggleCreateForm}>Create ChatRoom</button>
+                            <div className={styles.tooltip}>
+                                <button className={styles.createBtn} onClick={toggleCreateForm}></button>
+                                <span className={styles.tooltiptext}>Create Room</span>
+                            </div>
                         </div>
                         <div className={styles.profileSection}>
                             <h3 className={styles.welcomeMsg}>Welcome, {authUser.email}</h3>
