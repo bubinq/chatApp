@@ -54,18 +54,18 @@ export const Navigation = () => {
                     <div className={styles.headerSubclass}>
                         <div className={styles.createChatRoom}>
                             <div className={styles.tooltip}>
-                                <button className={styles.createBtn} onClick={toggleCreateForm}></button>
+                                <button className={styles.createBtn} onClick={toggleCreateForm} data-testid='createBtn'></button>
                                 <span className={styles.tooltiptext}>Create Room</span>
                             </div>
                         </div>
                         <div className={styles.profileSection}>
                             <h3 className={styles.welcomeMsg}>Welcome, {authUser.email}</h3>
-                            <Link to='' onClick={logoutHandler} className={styles.logOut}>Sign Out</Link>
+                            <Link to='' onClick={logoutHandler} className={styles.logOut} data-testid='logout'>Sign Out</Link>
                         </div>
                     </div>
                     :
                     <div className={styles.loginWrapper}>
-                        <Link to='' onClick={() => setToggleModal(!toggleModal)} className={styles.logOut}>Log In</Link>
+                        <Link to='' onClick={() => setToggleModal(!toggleModal)} className={styles.logOut} data-testid='login'>Log In</Link>
                     </div>
 
                 }
