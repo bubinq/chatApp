@@ -22,22 +22,23 @@ export const ChatRoomForm = ({ toggleCreateForm }) => {
             isPrivate: formValue.isPrivate,
             password: formValue.password
         })
+        toggleCreateForm()
     }
 
     return (
         <>
-            <div className="overlay" onClick={toggleCreateForm}></div>
+            <div className="overlay" onClick={toggleCreateForm} data-testid='overlay'></div>
             <div className="modal-content">
                 <h3>Create ChatRoom</h3>
                 <form onSubmit={createRoom}>
                     <div className="email-wrapper">
                         <label htmlFor="name" className="labels">ChatRoom</label>
-                        <input type="text" name="chat" id="name" autoComplete='off' value={formValue.name} onChange={(ev) => { setFormValue(oldVal => ({ ...oldVal, name: ev.target.value })) }} required />
+                        <input type="text" name="chat" id="name" autoComplete='off' value={formValue.name} onChange={(ev) => { setFormValue(oldVal => ({ ...oldVal, name: ev.target.value })) }} required data-testid='room' />
                     </div>
 
                     <div className="email-wrapper">
                         <label htmlFor="pas">Make room private</label>
-                        <input type="checkbox" id="pas" onClick={showPassHandler} onChange={() => { setFormValue(oldVal => ({ ...oldVal, isPrivate: !oldVal['isPrivate'] })) }} ></input>
+                        <input type="checkbox" id="pas" onClick={showPassHandler} onChange={() => { setFormValue(oldVal => ({ ...oldVal, isPrivate: !oldVal['isPrivate'] })) }} data-testid='pass'></input>
                     </div>
 
                     {show &&
@@ -48,11 +49,11 @@ export const ChatRoomForm = ({ toggleCreateForm }) => {
                     }
 
                     <div className="authBtn">
-                        <button>Create</button>
+                        <button data-testid='submit'>Create</button>
                     </div>
                 </form>
                 <div className="modal-close">
-                    <button onClick={toggleCreateForm}>&#x2716;</button>
+                    <button onClick={toggleCreateForm} data-testid='close'>&#x2716;</button>
                 </div>
             </div>
         </>
