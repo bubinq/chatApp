@@ -2,13 +2,26 @@ import { useEffect, useState } from "react"
 import { Navigation } from "./Navigation"
 import { chatRoomRef } from "./constants/FirebaseConstants"
 import { onSnapshot, query } from "firebase/firestore"
-import { Link } from "react-router-dom"
 import styles from './HomePage.module.css'
+import { RoomLink } from "./RoomLink"
+import { PassPopUp } from "./PassPopUp"
 
 export const HomePage = () => {
     const [chatRooms, setChatRooms] = useState([])
+    const [showPopUp, setShowPopUp] = useState(false)
+    const [roomId, setRoomId] = useState('')
+
+    const togglePopUp = (ev) => {
+        ev.preventDefault()
+        setShowPopUp(!showPopUp)
+        if (roomId === '' || ev.target.tagName === 'A') {
+            let room = ev.target.href.split('/').reverse()[0]
+            setRoomId(room)
+        }
+    }
 
     useEffect(() => {
+
         const q = query(chatRoomRef)
         const unsubscribe = onSnapshot(q, (docs) => {
             const chatRoomsList = []
@@ -21,11 +34,14 @@ export const HomePage = () => {
     }, [])
     return (
         <>
-            <Navigation></Navigation>
+            <Navigation chatRooms={chatRooms}></Navigation>
             <div className={styles.homePageWrapper}>
                 <div className={styles.chatRooms}>
-                    {chatRooms.map(chatRoom => <Link key={chatRoom.id} to={`/chatroom/${chatRoom.id}`}>{chatRoom.name}</Link>)}
+                    {chatRooms.map(chatRoom => <RoomLink key={chatRoom.id} chatRoom={chatRoom} togglePopUp={togglePopUp}></RoomLink>)}
                 </div>
+                {showPopUp &&
+                    <PassPopUp togglePopUp={togglePopUp} chatRoom={chatRooms} id={roomId}></PassPopUp>
+                }
             </div>
         </>
     )

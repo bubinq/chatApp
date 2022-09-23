@@ -1,0 +1,15 @@
+.labels {
+    position: absolute;
+    top: 0;
+    left: 6%;
+    z-index: 1;
+    transition: all 0.3s ease;
+    caret-color: transparent;
+}
+
+.heading {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    text-align: center;
+}

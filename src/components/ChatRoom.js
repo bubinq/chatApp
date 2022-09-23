@@ -44,7 +44,6 @@ export const ChatRoom = () => {
                 currentMessages.push({ ...doc.data(), id: doc.id })
             });
             setCollectMessages(currentMessages)
-            console.log(currentMessages);
         });
         return unsubscriber;
         // eslint-disable-next-line 
@@ -60,7 +59,6 @@ export const ChatRoom = () => {
             <Navigation></Navigation>
             <div className={styles.chatboxWrap}>
                 <div className={styles.messages}>
-
                     {collectMessages?.sort((first, second) =>
                         first?.createdAt?.seconds <= second.createdAt?.seconds ? -1 : 1
                     )
