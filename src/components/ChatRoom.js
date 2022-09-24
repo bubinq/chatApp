@@ -55,7 +55,7 @@ export const ChatRoom = () => {
         )
     }
     return (
-        <div className='chatRoomWrapper'>
+        <div className='chatRoomWrapper' data-testid='wrapper'>
             <Navigation></Navigation>
             <div className={styles.chatboxWrap}>
                 <div className={styles.messages}>

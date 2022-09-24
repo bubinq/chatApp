@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Navigation } from "./Navigation"
 import { chatRoomRef } from "./constants/FirebaseConstants"
 import { onSnapshot, query } from "firebase/firestore"
 import styles from './HomePage.module.css'
 import { RoomLink } from "./RoomLink"
 import { PassPopUp } from "./PassPopUp"
+import { RoomContext } from "../contexts/roomContext"
 
 export const HomePage = () => {
-    const [chatRooms, setChatRooms] = useState([])
+    const { setChatRooms, chatRooms } = useContext(RoomContext)
     const [showPopUp, setShowPopUp] = useState(false)
     const [roomId, setRoomId] = useState('')
 
@@ -31,10 +32,11 @@ export const HomePage = () => {
             setChatRooms(chatRoomsList)
         })
         return unsubscribe
+        // eslint-disable-next-line
     }, [])
     return (
         <>
-            <Navigation chatRooms={chatRooms}></Navigation>
+            <Navigation></Navigation>
             <div className={styles.homePageWrapper}>
                 <div className={styles.chatRooms}>
                     {chatRooms.map(chatRoom => <RoomLink key={chatRoom.id} chatRoom={chatRoom} togglePopUp={togglePopUp}></RoomLink>)}

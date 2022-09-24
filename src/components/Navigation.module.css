@@ -140,3 +140,8 @@
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
+.currRoom {
+    margin-top: 12px;
+    margin-bottom: 0;
+}

@@ -7,11 +7,13 @@ import { logout } from '../services/firebase-auth'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../contexts/authContext'
 import { ChatRoomForm } from './ChatRoomForm'
+import { RoomContext } from '../contexts/roomContext'
 
-export const Navigation = ({ chatRooms }) => {
+export const Navigation = () => {
     const navigateTo = useNavigate()
 
     const { authUser } = useContext(AuthContext)
+    const { chatRooms } = useContext(RoomContext)
 
     const [toggleModal, setToggleModal] = useState(false)
     const [View, setView] = useState(() => LoginModal)
@@ -21,13 +23,12 @@ export const Navigation = ({ chatRooms }) => {
     useEffect(() => {
         const path = window.location.pathname.split('/').reverse()[0]
         if (path !== '') {
-            console.log(chatRooms);
-            // const currentRoom = chatRooms.filter(room => room.id === path)
-            // console.log(currentRoom);
-            // setRoom(currentRoom)
+
+            const currentRoom = chatRooms.filter(room => room.id === path)
+            setRoom(currentRoom)
         }
         // eslint-disable-next-line
-    }, [room])
+    }, [])
 
     const toggleModalHandler = () => {
         setToggleModal(!toggleModal)
@@ -70,9 +71,9 @@ export const Navigation = ({ chatRooms }) => {
                                 <span className={styles.tooltiptext}>Create Room</span>
                             </div>
                         </div>
-                        <div>
+                        <div className={styles.currRoom}>
                             {room &&
-                                <h1>{room[0].name}What</h1>
+                                <h5 className={styles.currRoom}>{room[0].name}</h5>
                             }
                         </div>
                         <div className={styles.profileSection}>

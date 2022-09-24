@@ -1,6 +1,5 @@
 import { screen, cleanup, render, fireEvent, waitFor } from '@testing-library/react'
 import { ChatRoomForm } from './ChatRoomForm'
-import { HomePage } from './HomePage'
 import '@testing-library/jest-dom'
 
 
@@ -68,6 +67,6 @@ test('Submit event should fire after create btn is pressed', async () => {
     fireEvent.change(room, { target: { value: testvalue } })
     fireEvent.click(submitBtn)
     await waitFor(() => {
-        expect(toggler.trigger).toBe(true)
+        expect(toggler.trigger).toBe(false)
     })
 })
