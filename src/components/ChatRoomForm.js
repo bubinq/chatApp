@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { addDoc } from "firebase/firestore"
 import { chatRoomRef } from "./constants/FirebaseConstants"
+import styles from './ChatRoomForm.module.css'
 
 
 export const ChatRoomForm = ({ toggleCreateForm }) => {
@@ -32,18 +33,18 @@ export const ChatRoomForm = ({ toggleCreateForm }) => {
                 <h3>Create ChatRoom</h3>
                 <form onSubmit={createRoom}>
                     <div className="email-wrapper">
-                        <label htmlFor="name" className="labels">ChatRoom</label>
+                        <label htmlFor="name" className={styles.labels}>ChatRoom</label>
                         <input type="text" name="chat" id="name" autoComplete='off' value={formValue.name} onChange={(ev) => { setFormValue(oldVal => ({ ...oldVal, name: ev.target.value })) }} required data-testid='room' />
                     </div>
 
-                    <div className="email-wrapper">
+                    <div className={styles.makePrivate}>
                         <label htmlFor="pas">Make room private</label>
-                        <input type="checkbox" id="pas" onClick={showPassHandler} onChange={() => { setFormValue(oldVal => ({ ...oldVal, isPrivate: !oldVal['isPrivate'] })) }} data-testid='pass'></input>
+                        <input className={styles.checkBox} type="checkbox" id="pas" onClick={showPassHandler} onChange={() => { setFormValue(oldVal => ({ ...oldVal, isPrivate: !oldVal['isPrivate'] })) }} data-testid='pass'></input>
                     </div>
 
                     {show &&
                         <div className="password-wrapper">
-                            <label htmlFor="password" className="labels">Password</label>
+                            <label htmlFor="password" className={styles.labels}>Password</label>
                             <input type="password" name="password" id="password" required onChange={(ev) => { setFormValue(oldVal => ({ ...oldVal, password: ev.target.value })) }} />
                         </div>
                     }

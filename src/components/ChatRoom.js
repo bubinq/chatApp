@@ -1,14 +1,13 @@
 import styles from './ChatRoom.module.css'
 import { useState, useEffect, useContext, useRef } from "react"
 import { messageColRef } from './constants/FirebaseConstants'
-import { addDoc, serverTimestamp, query, onSnapshot, limit, where } from 'firebase/firestore'
+import { addDoc, query, onSnapshot, where } from 'firebase/firestore'
 import { Message } from './Message'
 import { AuthContext } from '../contexts/authContext'
 import { useParams } from 'react-router'
 import { Navigation } from './Navigation'
 
 export const ChatRoom = () => {
-
     const bottom = useRef()
     const params = useParams()
     const { authUser } = useContext(AuthContext)
@@ -24,7 +23,7 @@ export const ChatRoom = () => {
                 name: authUser.displayName,
                 chatRoomId: params.chatroomId,
                 uid: authUser.uid,
-                createdAt: serverTimestamp()
+                createdAt: new Date().valueOf()
             })
             bottom.current.scrollIntoView({ behavior: 'smooth' })
             setMessage('')
@@ -37,7 +36,7 @@ export const ChatRoom = () => {
     }
 
     useEffect(() => {
-        const q = query(messageColRef, where('chatRoomId', '==', params.chatroomId), limit(20))
+        const q = query(messageColRef, where('chatRoomId', '==', params.chatroomId))
         const unsubscriber = onSnapshot(q, (querySnapshot) => {
             const currentMessages = []
             querySnapshot.forEach(doc => {
@@ -60,10 +59,8 @@ export const ChatRoom = () => {
             <div className={styles.chatboxWrap}>
                 <div className={styles.messages}>
                     {collectMessages?.sort((first, second) =>
-                        first?.createdAt?.seconds <= second.createdAt?.seconds ? -1 : 1
-                    )
-
-                        ?.map(message => <Message key={message.id} message={message}></Message>)}
+                        first?.createdAt <= second?.createdAt?  -1 : 1
+                    ).map(message => <Message key={message.id} message={message}></Message>)}
                     <div ref={bottom}></div>
                 </div>
 
@@ -76,7 +73,7 @@ export const ChatRoom = () => {
                             onChange={(ev) => setMessage(ev.target.value)}
                         >
                         </input>
-                        <button className={styles.sendBtn}>Send</button>
+                        <button className={styles.sendBtn} data-testid='submitBtn'>Send</button>
                     </form>
                 </div>
 

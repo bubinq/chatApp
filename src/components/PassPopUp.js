@@ -14,7 +14,7 @@ export const PassPopUp = ({ chatRoom, togglePopUp, id }) => {
         if (currRoom[0].password === passValue) {
             navigateTo(`/chatroom/${currRoom[0].id}`)
         } else {
-            alert('Wrong Password')
+            alert('Wrong Password! Try again!')
         }
     }
 

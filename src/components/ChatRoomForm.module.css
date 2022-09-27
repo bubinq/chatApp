@@ -1,0 +1,23 @@
+.labels {
+    position: absolute;
+    top: 0;
+    left: 6%;
+    z-index: 1;
+    transition: all 0.3s ease;
+    caret-color: transparent;
+}
+
+.checkBox {
+    font-size: 1.1rem;
+    padding: 5px 4px;
+    width: 5% !important;
+}
+
+.makePrivate {
+    display: flex;
+    margin-top: 16px;
+    margin-left: 28px;
+    font-size: 1.1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    caret-color: transparent;
+}

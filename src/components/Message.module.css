@@ -22,4 +22,15 @@
 }
 .displayName {
     color: rgba(195,51,100,1);
+    font-weight: 800;
+}
+
+.displayDate {
+    color: rgba(195,51,100,0.85);
+    margin-left: 10px;
+    font-size: 0.9rem;
+}
+
+.nameWrapper {
+    display: flex;
 }

@@ -1,19 +1,19 @@
 import { createContext, useEffect, useState } from "react";
-import { useLocalStorage } from '../hooks/useLocalStorage'
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
-export const RoomContext = createContext()
-
+export const RoomContext = createContext();
 
 export const RoomProvider = ({ children }) => {
-    const [chatRooms, setChatRooms] = useState([])
-    const [localStorage, setLocalStorage] = useLocalStorage('rooms', [])
+    const [chatRooms, setChatRooms] = useState([]);
+    const [lstorage, setLocalStorage] = useLocalStorage("rooms", []);
 
     useEffect(() => {
         setLocalStorage(chatRooms)
-    }, [chatRooms, localStorage, setLocalStorage ])
+    }, [chatRooms, lstorage, setLocalStorage]);
+
     return (
         <RoomContext.Provider value={{ setChatRooms, chatRooms }}>
             {children}
         </RoomContext.Provider>
-    )
-}
+    );
+};
