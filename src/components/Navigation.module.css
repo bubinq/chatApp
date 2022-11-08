@@ -145,3 +145,36 @@
     margin-top: 12px;
     margin-bottom: 0;
 }
+
+@media screen and (max-width: 574px) {
+    .header {
+        width: 90%;
+    }
+    .loginWrapper {
+        margin-top: 10px;
+    }
+    .welcomeMsg {
+        display: none;
+    }
+    .logOut {
+        font-size: 1.1rem;
+        margin-right: 15px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+    .headerSubclass {
+        margin-right: 0px;
+        margin-top: 10px;
+        align-items: center;
+    }
+    .createChatRoom {
+        margin-bottom: 15px;
+    }
+    .currRoom {
+        margin-top: 8px;
+        max-width: 130px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 10px;
+    }
+}

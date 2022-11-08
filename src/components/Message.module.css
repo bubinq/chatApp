@@ -4,6 +4,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: left;
 }
 
 .messageWrapperRight {
@@ -13,6 +14,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: right;
 }
 
 .msg{
@@ -33,4 +35,13 @@
 
 .nameWrapper {
     display: flex;
+}
+
+@media screen and (max-width: 574px) {
+    .msg {
+        font-size: 1rem;
+        max-width: 324px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }

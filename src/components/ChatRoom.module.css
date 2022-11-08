@@ -62,3 +62,22 @@
 .sendBtn:hover {
     color: gray;
 }
+
+@media screen and (max-width: 574px) {
+    .chatboxWrap {
+        width: 90%;
+    }
+    .messages {
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 20px;
+        margin-top: 20px;
+    }
+    .footer {
+        width: 80%;
+        left: 8%;
+    }
+    .sendBtn {
+        right: 1%;
+    }
+}

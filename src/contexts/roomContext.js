@@ -4,15 +4,19 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 export const RoomContext = createContext();
 
 export const RoomProvider = ({ children }) => {
-    const [chatRooms, setChatRooms] = useState([]);
-    const [lstorage, setLocalStorage] = useLocalStorage("rooms", []);
+    const [chatRooms, setChatRooms] = useLocalStorage("rooms", []);
+    const [showCreateRoom, setShowCreateRoom] = useState(true)
+
+    const toggleCreateRoom = (value) => {
+        setShowCreateRoom(value)
+    }
 
     useEffect(() => {
-        setLocalStorage(chatRooms)
-    }, [chatRooms, lstorage, setLocalStorage]);
+        console.log(chatRooms);
+    }, [chatRooms]);
 
     return (
-        <RoomContext.Provider value={{ setChatRooms, chatRooms }}>
+        <RoomContext.Provider value={{ setChatRooms, chatRooms, toggleCreateRoom, showCreateRoom }}>
             {children}
         </RoomContext.Provider>
     );

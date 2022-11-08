@@ -235,3 +235,18 @@
       transform: scale(1.5);
     }
   }
+
+  @media screen and (max-width: 574px){
+    .modal-content {
+      min-width: 260px;
+    }    
+    .modal-content input {
+      padding: 16px 4px;
+    }
+    .text-wrapper span {
+      font-size: 1.1rem;
+    }
+    .chatRoomWrapper {
+      margin-top: 20px;
+    }
+  }
