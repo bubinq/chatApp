@@ -12,10 +12,9 @@ export const Navigation = () => {
   const navigateTo = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user"));
-  const { chatRooms, toggleCreateRoom, showCreateRoom } =
+  const { chatRooms, toggleCreateRoom, showCreateRoom, toggleLoginModal, toggleModal } =
     useContext(RoomContext);
 
-  const [toggleModal, setToggleModal] = useState(false);
   const [View, setView] = useState(() => LoginModal);
   const [create, setShowCreate] = useState(false);
   const [room, setRoom] = useState("");
@@ -33,10 +32,6 @@ export const Navigation = () => {
     setIsLoading(false);
     // eslint-disable-next-line
   }, []);
-
-  const toggleModalHandler = () => {
-    setToggleModal(!toggleModal);
-  };
 
   const toggleCreateForm = () => {
     setShowCreate(!create);
@@ -87,7 +82,6 @@ export const Navigation = () => {
                 ) : (
                   <h5 className={styles.currRoom}>{room[0]?.name}</h5>
                 )
-                // <h5 className={styles.currRoom}>WTF</h5>
               }
             </div>
             <div className={styles.profileSection}>
@@ -112,7 +106,7 @@ export const Navigation = () => {
             </Link>
             <Link
               to=""
-              onClick={() => setToggleModal(!toggleModal)}
+              onClick={() => toggleLoginModal()}
               className={styles.logOut}
               data-testid="login"
             >
@@ -124,7 +118,7 @@ export const Navigation = () => {
         {toggleModal && (
           <View
             switchHandler={switchFormHandler}
-            showModalHandler={toggleModalHandler}
+            showModalHandler={toggleLoginModal}
           />
         )}
 
